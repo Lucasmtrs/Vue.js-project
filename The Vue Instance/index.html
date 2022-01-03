@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <div class="nav-bar"></div>
+    
+    <div id="app">
+        <div class="product">
+
+            <div class="product-image">
+                <a :href="linkSocks">
+                    <img v-bind:src="image">
+                </a>
+            </div>
+
+            <div class="product-info">
+                <p v-if="onSale">On Sale!</p>
+                <p v-else>Sorry we don't have this product anymore</p>
+                <h1>{{product}}</h1>
+                <h3>I love My {{product}}</h3>
+                <p v-if="inventory > 10">In stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0 ">Almost sold out!</p>
+                <p v-else>Out of Stock</p>
+
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                    <li v-for="size in sizes">{{ size }}</li>
+                </ul>
+
+                <div v-for="variant in variants" :key="variant.variantId">
+                    <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
+                </div>
+
+                <!-- <button v-on:click="cart += 1">Add to Cart</button> 
+                Essa é a forma simples, abaixo utilizando função e um evento--> 
+
+                <div class="buttons">
+                    <button v-on:click="addToCart" style="background-color: rgb(25, 230, 161);">Add to Cart</button>
+                    <button @click="decrementCart" style="background-color: rgb(250, 117, 117);">Remove from Cart</button>
+                </div>
+
+                <div class="cart">
+                    <p>Cart({{ cart }})</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="main.js"></script>
+</body>
+</html>

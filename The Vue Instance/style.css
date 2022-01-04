@@ -91,4 +91,8 @@ body {
   .buttons {
       display: inline-flex
   }
+
+  .textOnSaleFalse {
+    text-decoration: line-through;
+  }
   
